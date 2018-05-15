@@ -20,6 +20,8 @@ def codon_to_aa(codon = 'AUG'):
         codon, please try again"
     '''
 
+    codon = codon.upper()   
+    
     ct = dict()
     ct['AUG']= 'Methionine'
     ct['UUU']= 'Phenylalanine'
