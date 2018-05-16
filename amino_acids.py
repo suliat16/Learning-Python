@@ -90,12 +90,15 @@ def codon_to_aa(codon = 'AUG'):
         codon: A string containing three letter. These letters can be ACUG, all caps,
             in any order or number, and each triplet corresponds to an amino acid
         
-    Returns: The amino acid associated with the entered codon. If the entered 
-        value isn't a codon, a message is returned saying that "That isn't a 
+    Returns: The amino acid associated with the entered codon. 
+    
+    Asserts: 
+        If the entered value isn't a codon, a message is returned saying that "That isn't a 
         codon, please try again"
     '''
     cdict = codon_dict()
     codon = codon.upper()
+    assert(codon in cdict), "That isn't a codon, please try again."
     
     return cdict[codon]
     
