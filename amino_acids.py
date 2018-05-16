@@ -147,6 +147,16 @@ def aa_to_codon(aa= 'W'):
         A list of the codons that could have coded for the amino acid
     '''
     
+    adict = amino_dict()
+    aa = aa.lower()
+    akeys = adict.keys()
+    
+    
+    for x in akeys:
+        if aa in x:
+            return adict[x]
+    
+    
 # =============================================================================
 # #     if codon == 'AUG':
 # #         return 'Methionine'
