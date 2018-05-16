@@ -8,19 +8,16 @@ Contains:
     A method which takes a codon and returns an amino acid
 """
 
-def codon_to_aa(codon = 'AUG'):
-    '''Takes a codon and returns an amino acid.
-
-    Args: 
-        codon: A string containing three letter. These letters can be ACUG, all caps,
-            in any order or number, and each triplet corresponds to an amino acid
+def codon_dict():
+    '''A dictionary relating codons to amino acids
+    
+    A dictionary where the keys are the codons and the values are the corresponding
+    amino acids
+    
+    Args:
         
-    Returns: The amino acid associated with the entered codon. If the entered 
-        value isn't a codon, a message is returned saying that "That isn't a 
-        codon, please try again"
+    Returns: A dictionary mapping an amino acid to each codon
     '''
-
-    codon = codon.upper()   
     
     ct = dict()
     ct['AUG']= 'Methionine'
@@ -84,7 +81,23 @@ def codon_to_aa(codon = 'AUG'):
     ct['UAG']= 'Stop codon'
     ct['UGA'] = 'Stop codon'
     
-    return ct[codon]
+    return ct
+
+def codon_to_aa(codon = 'AUG'):
+    '''Takes a codon and returns an amino acid.
+
+    Args: 
+        codon: A string containing three letter. These letters can be ACUG, all caps,
+            in any order or number, and each triplet corresponds to an amino acid
+        
+    Returns: The amino acid associated with the entered codon. If the entered 
+        value isn't a codon, a message is returned saying that "That isn't a 
+        codon, please try again"
+    '''
+    cdict = codon_dict()
+    codon = codon.upper()
+    
+    return cdict[codon]
     
 # =============================================================================
 # #     if codon == 'AUG':
