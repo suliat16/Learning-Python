@@ -9,7 +9,8 @@ Contains:
 """
 
 def codon_dict():
-    '''A dictionary relating codons to amino acids
+    """
+    A dictionary relating codons to amino acids
     
     A dictionary where the keys are the codons and the values are the corresponding
     amino acids
@@ -17,7 +18,7 @@ def codon_dict():
     Args:
         
     Returns: A dictionary mapping an amino acid to each codon
-    '''
+    """
     
     ct = dict()
     ct['AUG']= 'Methionine'
@@ -119,42 +120,47 @@ def amino_dict():
     
     
 def codon_to_aa(codon = 'AUG'):
-    '''Takes a codon and returns an amino acid.
+    """
+    Take a codon and return an amino acid.
 
     Args: 
-        codon (str): A string containing three letter. These letters can be ACUG, all caps,
-            in any order or number, and each triplet corresponds to an amino acid
+        codon (str): A string containing three letter. These letters can be ACUG,
+            in any order, and each triplet corresponds to an amino acid
         
     Returns: The amino acid associated with the entered codon. 
     
-    Asserts: 
+    Raise: 
         If the entered value isn't a codon, a message is returned saying that "That isn't a 
         codon, please try again"
-    '''
+    """
     cdict = codon_dict()
     codon = codon.upper()
-    assert(codon in cdict.keys()), "That isn't a codon, please try again."
-    
-    return cdict[codon]
+    #assert(codon in cdict.keys()), "That isn't a codon, please try again."
+    try:
+        return cdict[codon]
+    except KeyError:
+        print("That isn't a codon, please try again.")
 
 def aa_to_codon(aa= 'W'):
-    '''Takes an amino acid and returns the codons encoding for it
+    """
+    Take an amino acid and return the codons encoding for it
     
     Args:
-        aa: A string either containing the amino acid name, its 3 letter code, or 
+        aa (str) : A string either containing the amino acid name, its 3 letter code, or 
             its 1 letter code
     Returns:
         A list of the codons that could have coded for the amino acid
-    '''
+    """
     
     adict = amino_dict()
     aa = aa.lower()
     akeys = adict.keys()
     
-   
-    for x in akeys:
-        if aa in x:
-            return adict[x]
-    
-    return "That isn't an amino acid, please try again"
+    try:
+        for x in akeys:
+            if aa in x:
+                return adict[x]
+        raise KeyError
+    except KeyError:
+        print("That isn't an amino acid, please try again")
   
