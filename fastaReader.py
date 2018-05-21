@@ -8,7 +8,9 @@ Created on Sun May 20 10:06:57 2018
 Reads a FASTA file, returns a single string.
 """
 
-class FastaRead:
+import re
+
+class FastaRead():
     
     """
     Open FASTA file and return a stream
@@ -23,6 +25,8 @@ class FastaRead:
         """
         self.file=fasta
         self.object=open(self.file, 'r')
+        self.read = self.object.read()
+        
         
         
     def change_mode(self, mode='r'):
@@ -31,12 +35,29 @@ class FastaRead:
         self.object = open(self.file, mode)
         
         
-    def get_sequence(self):
+    def indv_block(self, st= ""):
         """
         """
-        strr=self.object.read()
+        fstr=re.split('(>)', st)
+        fstr = list(filter(None, fstr))
+        return fstr
+    
+    def get_head(self, index=0):
+        """
+        """
+        fstr= indv_block(self.read)
+        fstr=fstr[index]
+        fstr=re.split('>|\s', fstr)
+        return fstr[0]
+    
+    def get_sequence(self, index=0):
+        """
+        """
+        fstr=indv_block(self.read)
+        fstr=fstr[index]
+        fstr= fstr.splitlines()
+        for f in fstr:
+            if f.startswith(">"):
+                fstr.remove(f)
+        fstr= "".join(fstr)
         
-        
-
-
-
